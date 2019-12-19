@@ -30,6 +30,7 @@ public class IngredientsAPI {
         return this.ingredientsService.create(name,spicy,amount,veggie);
 
 
+
     }
     @PatchMapping(path = "/{id}")
     public Ingredient patchIngredient(@PathVariable String id,

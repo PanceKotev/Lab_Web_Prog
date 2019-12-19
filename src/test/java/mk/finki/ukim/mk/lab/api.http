@@ -5,7 +5,94 @@
 # * 'gtrp' and 'gtr' create a GET request with or without query parameters;
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
-GET http://localhost:80/api/item
+#Get all the ingredients
+GET http://localhost:8080/ingredients/
+###
+#Create ingredient with a name of feferonki which is spicy and a vegetable and amount=1
+POST http://localhost:8080/ingredients/
+Content-Type: application/x-www-form-urlencoded
+
+name=feferonki&spicy=true&amount=1&veggie=true
+
+###
+#Get an ingredient via an id
+GET http://localhost:8080/ingredients/?id=0
 Accept: application/json
 
+###
+#Delete Item by ID
+DELETE http://localhost:8080/ingredients/?id=0
+###
+#Patch call
+PATCH http://localhost:8080/ingredients/
+Content-Type: application/x-www-form-urlencoded
+
+id=0&veggie=false
+###
+#Size over 10 exception testing
+GET http://localhost:8080/ingredients/?page=0&size=15
+Accept: application/json
+###
+#Size under 10 exception testing
+GET http://localhost:8080/ingredients/?page=0&size=8
+Accept: application/json
+###
+#Get all pizzas that have that ID
+GET http://localhost:8080/ingredients/0/pizzas
+Accept: application/json
+###
+#Post for testing 4th spicy ingredient
+POST http://localhost:8080/ingredients
+Content-Type: application/x-www-form-urlencoded
+
+name=pepperoni&spicy=true&amount=1&veggie=false
+###
+#Post for an ingredient with the same name
+POST http://localhost:8080/ingredients
+Content-Type: application/x-www-form-urlencoded
+
+name=pepperoni&spicy=true&amount=1&veggie=false
+###
+
+
+#Pizza time
+
+#Creates a pizza
+POST http://localhost:8080/pizzas
+Content-Type: application/x-www-form-urlencoded
+
+pizzaType=capricoza&description=withstuff&ingredientIDs=1
+
+###
+#Gets all pizzas
+GET http://localhost:8080/pizzas
+Accept: application/json
+
+###
+#Put type
+PUT http://localhost:8080/pizzas/
+
+id=0&pizzaType=pepperoni&description=withstuff&ingredientIDs=0&veggie=false
+###
+GET http://localhost:8080/pizzas/?id=0
+Accept: application/json
+
+###
+#Get all pizzas with less than 2 ingredients
+GET http://localhost:8080/pizzas?totalIngredients=2
+Accept: application/json
+
+###
+#Delete pizza with id 0
+DELETE http://localhost:8080/pizzas/0
+###
+#Compare 2 pizzas
+GET http://localhost:8080/pizzas/compare?pizza1=0&pizza2=1
+Accept: application/json
+
+###
+#Exception
+PUT http://localhost:8080/pizzas/
+
+id=0&pizzaType=pepperoni&description=withstuff&ingredientIDs=[1]&veggie=true
 ###
