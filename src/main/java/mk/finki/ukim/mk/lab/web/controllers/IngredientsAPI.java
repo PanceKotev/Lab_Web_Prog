@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/ingredients",produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "http://localhost:3000")
 public class IngredientsAPI {
     private final IngredientsServiceImpl ingredientsService;
     private final PizzaServiceImpl pizzaService;
@@ -33,11 +34,16 @@ public class IngredientsAPI {
 
     }
     @PatchMapping(path = "/{id}")
-    public Ingredient patchIngredient(@PathVariable String id,
+    public Ingredient patchIngredient(@PathVariable Long id,
+                                      @RequestParam String name,
                                       @RequestParam Optional<Boolean> spicy,
                                       @RequestParam Optional<Float> amount,
                                       @RequestParam Optional<Boolean> veggie){
-        return this.ingredientsService.editIngredient(id,spicy,amount,veggie);
+        return this.ingredientsService.editIngredient(id,name,spicy,amount,veggie);
+    }
+    @GetMapping(path="/testAll")
+    public List<Ingredient> findAll(){
+        return this.ingredientsService.getAll();
     }
     @DeleteMapping(path="/{id}")
     public void deleteIngredient(@PathVariable Long id){

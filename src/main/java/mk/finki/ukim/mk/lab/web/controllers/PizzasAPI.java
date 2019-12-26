@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path="/pizzas",produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "http://localhost:3000")
 public class PizzasAPI {
     private final PizzaServiceImpl pizzaService;
 

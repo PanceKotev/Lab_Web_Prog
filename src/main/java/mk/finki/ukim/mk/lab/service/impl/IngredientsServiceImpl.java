@@ -33,18 +33,18 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public Ingredient editIngredient(String name, Optional<Boolean> spicy, Optional<Float> amount, Optional<Boolean> veggie) {
+    public Ingredient editIngredient(Long id,String name, Optional<Boolean> spicy, Optional<Float> amount, Optional<Boolean> veggie) {
         Ingredient ingredient;
-        if(name!=null){
             if(spicy.isPresent() && spicy.get()==true)
                 checkSpicy();
-            ingredient=ingredientsRepository.findByName(name);
+            ingredient=ingredientsRepository.findById(id).orElseThrow(IngredientIDNotFoundException::new);
+            if(name!=null)
+                ingredient.setName(name);
             amount.ifPresent(ingredient::setAmount);
             spicy.ifPresent(ingredient::setSpicy);
             veggie.ifPresent(ingredient::setVeggie);
+            ingredientsRepository.save(ingredient);
             return ingredient;
-        }else
-        throw new IngredientIDNotFoundException();
 
     }
 
@@ -62,6 +62,11 @@ public class IngredientsServiceImpl implements IngredientsService {
         return ingredientsRepository.findAll(PageRequest.of(page,size));
         }
         else throw new InvalidPageSizeException();
+    }
+
+    @Override
+    public List<Ingredient> getAll() {
+        return this.ingredientsRepository.findAll();
     }
 
     @Override

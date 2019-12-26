@@ -11,9 +11,10 @@ import java.util.Optional;
 public interface IngredientsService {
 
     Ingredient create(String name, boolean spicy,float amount, boolean veggie);
-    Ingredient editIngredient(String name, Optional<Boolean> spicy,Optional<Float> amount, Optional<Boolean> veggie);
+    Ingredient editIngredient(Long id,String name, Optional<Boolean> spicy,Optional<Float> amount, Optional<Boolean> veggie);
     void deleteIngredient(Long id);
     Page<Ingredient> getAllOrdered(int page, int size);
+    List<Ingredient> getAll();
     Ingredient getIngredient(Long id);
     Page<Ingredient> getAllSpicy();
 

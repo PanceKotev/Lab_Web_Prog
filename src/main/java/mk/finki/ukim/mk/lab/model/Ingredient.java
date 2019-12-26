@@ -31,7 +31,7 @@ public class Ingredient {
     private float amount;
 
     private boolean veggie;
-    @ManyToMany(mappedBy = "ingredients")
+    @ManyToMany(mappedBy = "ingredients",fetch=FetchType.EAGER)
     @JsonIgnore
     private List<Pizza> pizzas;
 
