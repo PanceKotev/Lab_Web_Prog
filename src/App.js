@@ -38,7 +38,7 @@ class App extends Component {
         let ingredient=response.data;
        
         this.setState((prevState)=>{
-          let newIngredients=prevState.ingredients.filter((item)=>{
+          let newIngredients=prevState.ingredients.map((item)=>{
             if(item.id===ingredient.id){
               return ingredient;
             }
@@ -68,8 +68,8 @@ class App extends Component {
           const ingred = state.ingredients.filter((t) => {
               return t.id !== ingredID;
           })
-          return {ingred}
-      });
+          return {ingredients:ingred};
+      })
       });
   }
   render() {
