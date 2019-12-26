@@ -1,6 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const ingredient = (props) => {
+    
     return (
         <tr>
         <td scope="col">{props.name}</td>
@@ -10,14 +12,14 @@ const ingredient = (props) => {
         <td scope="col">
             <button className="btn btn-sm btn-secondary">
                 <span className="fa fa-edit"/>
-                <span><strong>Edit</strong></span>
+                <span><strong><Link className="text-light" to={"/ingredients/"+props.id+"/edit"}>Edit</Link></strong></span>
             </button>
             <button className="btn btn-sm btn-outline-secondary ">
                 <span className="fa fa-remove"/>
-                <span><strong>Remove</strong></span>
+                <span><strong><a onClick={()=>props.onDelete(props.id)} className="text-secondary">Remove</a></strong></span>
             </button>
 <button className="btn btn-sm btn-outline-dark">
-<span><strong>Details</strong></span>
+<span><strong><Link className="text-secondary" to={"/ingredients/"+props.id+"/details"}>Details</Link></strong></span>
 </button>
         </td>
     </tr>

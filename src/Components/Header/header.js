@@ -4,7 +4,7 @@ const Header = (props) => {
     return (
     <header>
             <nav className="navbar navbar-expand-md navbar-dark navbar-fixed bg-dark">
-            <Link className="nav-link" to={"/"}>Home</Link>
+            <Link className="nav-link text-light" to={"/"}>Home</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
@@ -19,7 +19,7 @@ const Header = (props) => {
                         </li>
                     </ul>
                     <form className="form-inline mt-2 mt-md-0 ml-3">
-                        <Link className="nav-link" to={"/login"}>Login</Link>
+                        <Link className="nav-link text-light" to={"/login"}>Login</Link>
                     </form>
                 </div>
             </nav>
